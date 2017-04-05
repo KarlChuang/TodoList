@@ -110,6 +110,15 @@ class App extends Component {
       return {TitleArray: newTitleArray};
     })
   }
+  handleListAddButtonClick = () => {
+    this.setState((prevState) => {
+      let newTitleArray = prevState.TitleArray;
+      newTitleArray.push(
+        {content: "Title", inputShow: false, ItemArray: []}
+      );
+      return {TitleArray: newTitleArray};
+    })
+  }
   render() {
     let newTodoList = this.ArrayMapping(this.state.TitleArray);
     const ListNumber = this.state.TitleArray.length;
@@ -119,6 +128,9 @@ class App extends Component {
         <h1>TODO-LIST ({(ListNumber>1) ? ListNumber + " Lists" : ListNumber+ " List"})</h1>
         <div>
           {newTodoList}
+          <div className="AddButton"
+                onClick={this.handleListAddButtonClick}
+          >+</div>
         </div>
       </div>
     );
