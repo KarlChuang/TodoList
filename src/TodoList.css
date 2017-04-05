@@ -1,0 +1,120 @@
+* {
+  font-family: Lucida Grande, Lucida Sans Unicode, Lucida Sans, Geneva, Verdana, sans-serif;
+}
+.TodoList {
+  width: 320px;
+  margin: 50px;
+}
+.TodoListTitle {
+  display: inline-block;
+  width: 300px;
+  border-radius: 10px;
+  transition: background-color 0.6s;
+  font-size: 20px;
+  margin-left: 20px;
+}
+.TodoItemList {
+  width: 320px;
+  border-radius: 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-left: 10px;
+  height: 150px;
+  max-height: 150px;
+  overflow: auto;
+}
+.title {
+  margin-left: -180px;
+  display: inline-block;
+  width: 150px;
+  font-size: 25px;
+  padding-bottom: 5px;
+  transition: background-color 0.6s;
+}
+.delete {
+  margin-top: 7px;
+  width: 15px;
+  margin-right: 10px;
+  float: right;
+}
+.delete:hover {
+  width: 25px;
+  margin-top: 2px;
+  margin-right: 0;
+  background-color: transparent;
+}
+.write {
+  width: 15px;
+  margin-top: 7px;
+  margin-right: 10px;
+  background-color: transparent;
+  float: right;
+}
+.write:hover {
+  width: 25px;
+  margin-top: 2px;
+  margin-right: 0;
+  background-color: transparent;
+}
+.Input {
+  margin: 5px;
+  width: 250px;
+}
+.TodoItem {
+  display: inline-block;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  width: 300px;
+  border-radius: 10px;
+  transition: background-color 0.6s;
+}
+.TodoItem:hover {
+  background-color: #ccddff;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border-radius: 10px;
+  transition: background-color 0.6s;
+}
+.button {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+  background-color: white;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  transition: background-color 0.6s;
+}
+.button:hover  {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  background-color: lightslategray;
+  transition: background-color 0.6s;
+} 
+.thing {
+  background-color: transparent;
+  display: inline-block;
+  width: 220px;
+  font-size: 20px;
+  border-radius: 30px;
+  transition: background-color 0.6s;
+}
+.ToolBar {
+  font-size: 13px;
+  width: 80px;
+  border-radius: 10px;
+  background-color: #333333;
+  color: white;
+  margin-left: 10px;
+  height: 20px;
+  max-height: 30px;
+}
