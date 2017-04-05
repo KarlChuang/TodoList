@@ -34,7 +34,8 @@ class App extends Component {
                   onChangeItemContent={this.handleChangeItemContent}
                   onChangeItemKeyDown={this.handleChangeItemKeyDown}
                   onItemChangeClick={this.handleItemChangeClick}
-                  onItemDelete={this.handleItemDelete} />
+                  onItemDelete={this.handleItemDelete}
+                  onAddButtonClick={this.handleAddButtonClick} />
       ))
     }
     return newArray;
@@ -97,6 +98,15 @@ class App extends Component {
     this.setState((prevState) => {
       let newTitleArray = prevState.TitleArray;
       newTitleArray[num].content = value;
+      return {TitleArray: newTitleArray};
+    })
+  }
+  handleAddButtonClick = (num) => {
+    this.setState((prevState) => {
+      let newTitleArray = prevState.TitleArray;
+      newTitleArray[num].ItemArray.push({
+        complete: false, content: "", inputShow: true
+      });
       return {TitleArray: newTitleArray};
     })
   }
