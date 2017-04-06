@@ -6,7 +6,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showStatus: "All",
       TitleArray: []
     }
   }
@@ -111,7 +110,7 @@ class App extends Component {
     this.setState((prevState) => {
       let newTitleArray = prevState.TitleArray;
       newTitleArray.push(
-        {content: "", inputShow: true, showStatus: this.state.showStatus, ItemArray: []}
+        {content: "", inputShow: true, showStatus: "All", ItemArray: []}
       );
       return {TitleArray: newTitleArray};
     })
@@ -144,6 +143,43 @@ class App extends Component {
       return {TitleArray: newTitleArray};
     })
   }
+  handleEveryAllButtonClick = () => {
+    this.setState((prevState) => {
+      let newTitleArray = prevState.TitleArray;
+      for (let i=0; i<newTitleArray.length; i++) {
+        newTitleArray[i].showStatus = "All";
+      }
+      return {TitleArray: newTitleArray};
+    })
+  }
+  handleEveryCompleteButtonClick = () => {
+    this.setState((prevState) => {
+      let newTitleArray = prevState.TitleArray;
+      for (let i=0; i<newTitleArray.length; i++) {
+        newTitleArray[i].showStatus = "Complete";
+      }
+      return {TitleArray: newTitleArray};
+    })
+  }
+  handleEveryUndoButtonClick = () => {
+    this.setState((prevState) => {
+      let newTitleArray = prevState.TitleArray;
+      for (let i=0; i<newTitleArray.length; i++) {
+        newTitleArray[i].showStatus = "Undo";
+      }
+      return {TitleArray: newTitleArray};
+    })
+  }
+  clearAllComplete = () => {
+      let newTitleArray = this.state.TitleArray;
+      for (let i=newTitleArray.length-1; i>=0; i--) {
+        for (let j=newTitleArray[i].ItemArray.length-1; j>=0; j--) {
+          if (newTitleArray[i].ItemArray[j].complete)
+            this.handleItemDelete(i, j);
+      }
+    }
+  }
+  
   render() {
     let newTodoList = this.ArrayMapping(this.state.TitleArray);
     const ListNumber = this.state.TitleArray.length;
@@ -151,6 +187,12 @@ class App extends Component {
     return (
       <div className="App">
         <h1>TODO-LIST ({(ListNumber>1) ? ListNumber + " Lists" : ListNumber+ " List"})</h1>
+          <div className="Tool">
+            <div className="ToolBar" onClick={this.handleEveryAllButtonClick}>All</div>
+            <div className="ToolBar" onClick={this.handleEveryCompleteButtonClick}>Complete</div>
+            <div className="ToolBar" onClick={this.handleEveryUndoButtonClick}>Undo</div>
+            <div className="ToolBar" onClick={this.clearAllComplete}>Clear</div>
+          </div>        
         <div>
           {newTodoList}
           <div className="AddButton"
