@@ -6,6 +6,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showStatus: "All",
       TitleArray: []
     }
   }
@@ -17,6 +18,7 @@ class App extends Component {
                   num={i}
                   titleName={inputArray[i].content}
                   titleShow={inputArray[i].inputShow}
+                  showStatus={inputArray[i].showStatus}
                   onChangeClick={this.handleChangeTitleClick}
                   onChangeContent={this.handleChangeTitleContent}
                   onDelete={this.handleTitleDelete}
@@ -27,7 +29,10 @@ class App extends Component {
                   onItemChangeClick={this.handleItemChangeClick}
                   onItemDelete={this.handleItemDelete}
                   onAddButtonClick={this.handleAddButtonClick}
-                  onItemCompleteClick={this.handleItemCompleteClick} />
+                  onItemCompleteClick={this.handleItemCompleteClick}
+                  onAllButtonClick={this.handleAllButtonClick}
+                  onCompleteButtonClick={this.handleCompleteButtonClick}
+                  onUndoButtonClick={this.handleUndoButtonClick} />
       ))
     }
     return newArray;
@@ -106,7 +111,7 @@ class App extends Component {
     this.setState((prevState) => {
       let newTitleArray = prevState.TitleArray;
       newTitleArray.push(
-        {content: "", inputShow: true, ItemArray: []}
+        {content: "", inputShow: true, showStatus: this.state.showStatus, ItemArray: []}
       );
       return {TitleArray: newTitleArray};
     })
@@ -115,6 +120,27 @@ class App extends Component {
     this.setState((prevState) => {
       let newTitleArray = prevState.TitleArray;
       newTitleArray[num1].ItemArray[num].complete = !(newTitleArray[num1].ItemArray[num].complete);
+      return {TitleArray: newTitleArray};
+    })
+  }
+  handleAllButtonClick = (num) => {
+    this.setState((prevState) => {
+      let newTitleArray = prevState.TitleArray;
+      newTitleArray[num].showStatus = "All";
+      return {TitleArray: newTitleArray};
+    })
+  }
+  handleCompleteButtonClick = (num) => {
+    this.setState((prevState) => {
+      let newTitleArray = prevState.TitleArray;
+      newTitleArray[num].showStatus = "Complete";
+      return {TitleArray: newTitleArray};
+    })
+  }
+  handleUndoButtonClick = (num) => {
+    this.setState((prevState) => {
+      let newTitleArray = prevState.TitleArray;
+      newTitleArray[num].showStatus = "Undo";
       return {TitleArray: newTitleArray};
     })
   }

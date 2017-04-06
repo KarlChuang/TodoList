@@ -3,7 +3,7 @@ import './TodoList.css'
 
 class TodoList extends Component {
 
-  ArrayMapping = (inputArray) => {
+  ArrayMapping = (inputArray, showStatus) => {
     let newArray = [];
     for(let i=0; i<inputArray.length; i++) {
       newArray.splice(i, 0, (
@@ -19,6 +19,14 @@ class TodoList extends Component {
                   onCompleteClick={(num) => this.props.onItemCompleteClick(this.props.num, num)} />
       ))
     }
+    if (showStatus !== "All")
+    {
+      for(let i=inputArray.length-1; i>=0; i--) { 
+        if (inputArray[i].complete !== (showStatus==="Complete")) {
+          newArray.splice(i, 1);
+        }
+      }
+    }
     return newArray;
   }
   
@@ -32,9 +40,12 @@ class TodoList extends Component {
     const handleTitleDelete = this.props.onDelete;
     const handleChangeTitleKeyDown = this.props.onChangeKeyDown;
     // Items
-    let newTodoItemList = this.ArrayMapping(this.props.ItemArray);
+    let newTodoItemList = this.ArrayMapping(this.props.ItemArray, this.props.showStatus);
     const ItemNumber = this.props.ItemArray.length;
     const handleAddButtonClick = this.props.onAddButtonClick;
+    const handleAllButtonClick = this.props.onAllButtonClick;
+    const handleCompleteButtonClick = this.props.onCompleteButtonClick;
+    const handleUndoButtonClick = this.props.onUndoButtonClick;
 
     return (
       <div className="TodoList">
@@ -50,7 +61,12 @@ class TodoList extends Component {
                 onClick={() => handleAddButtonClick(num)}
           >+</div>
         </div>
-        <div className="ToolBar">{(ItemNumber>1) ? ItemNumber + " Items" : ItemNumber + " Item"}</div>
+        <div className="Tool">
+          <div className="ToolBar">{(ItemNumber>1) ? ItemNumber + " Items" : ItemNumber + " Item"}</div>
+          <div className="ToolBar" onClick={() => handleAllButtonClick(num)}>All</div>
+          <div className="ToolBar" onClick={() => handleCompleteButtonClick(num)}>Complete</div>
+          <div className="ToolBar" onClick={() => handleUndoButtonClick(num)}>Undo</div>
+        </div>
       </div>
     );
   }
@@ -71,7 +87,7 @@ class TodoListTitle extends Component {
                 value={titleName} 
                 onChange={(event) => handleChangeContent(event.target.value)} 
                 onKeyDown={(event) => handleChangeKeyDown(event)} /> 
-        ): (<div className="title">{titleName}</div>)}
+        ) : (<div className="title">{titleName}</div>)}
         <img className="delete" src={require("./pic/delete.png")} alt="delete"
               onClick={handleDelete} />
         <img className="write" src={require("./pic/write.png")} alt="write"

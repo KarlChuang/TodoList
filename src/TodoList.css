@@ -3,10 +3,13 @@
 }
 .TodoList {
   width: 320px;
-  margin: 50px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 50px;
 }
 .TodoListTitle {
   display: inline-block;
+  text-align: center;
   width: 300px;
   border-radius: 10px;
   transition: background-color 0.6s;
@@ -27,7 +30,6 @@
   overflow: auto;
 }
 .title {
-  margin-left: -180px;
   display: inline-block;
   width: 150px;
   font-size: 25px;
@@ -142,17 +144,24 @@
 }
 .ToolBar {
   font-size: 13px;
-  width: 80px;
+  width: 70px;
   border-radius: 10px;
-  background-color: #333333;
+  background-color: rgba(255,255,255,0.50);
   color: white;
-  margin-left: 10px;
   height: 20px;
+  margin-right: 5px;
   max-height: 30px;
+  display: inline-block;
+}
+.Tool {
+  margin-left: 10px;
+  margin-right: -12px;
+  background-color: #607D8B;
+  border-radius: 5px;
 }
 .AddButton {
   width: 20%;
-  margin-left: 35%;
+  margin-left: 40%;
   margin-top: 10px;
   border-radius: 20px;
   background-color: slategrey;
