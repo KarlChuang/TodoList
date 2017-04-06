@@ -15,7 +15,8 @@ class TodoList extends Component {
                   onChangeContent={(num, value) => this.props.onChangeItemContent(this.props.num, num, value)}
                   onChangeKeyDown={(num, event) => this.props.onChangeItemKeyDown(this.props.num, num, event)}
                   onChangeClick={(num) => this.props.onItemChangeClick(this.props.num, num)}
-                  onDelete={(num) => this.props.onItemDelete(this.props.num, num)} />
+                  onDelete={(num) => this.props.onItemDelete(this.props.num, num)}
+                  onCompleteClick={(num) => this.props.onItemCompleteClick(this.props.num, num)} />
       ))
     }
     return newArray;
@@ -91,15 +92,16 @@ class TodoItem extends Component {
     const handleChangeKeyDown = this.props.onChangeKeyDown;
     const handleChangeClick = this.props.onChangeClick;
     const handleDelete = this.props.onDelete;
+    const handleCompleteClick = this.props.onCompleteClick;
     return (
       <div className="TodoItem" >
-        <div className="button" />
+        <div className={(complete)?"buttonComplete":"button"} onClick={() => handleCompleteClick(num)}/>
         {(inputShow) ? (
           <input type="text" className="Input"
                 value={content} 
                 onChange={(event) => handleChangeContent(num , event.target.value)} 
                 onKeyDown={(event) => handleChangeKeyDown(num, event)} /> 
-          ) : (<div className="thing">{content}</div>) }
+          ) : (<div className={(complete)?"thingComplete":"thing"}>{content}</div>) }
         <img className="delete" src={require("./pic/delete.png")} alt="delete"
               onClick={() => handleDelete(num)} />
         <img className="write" src={require("./pic/write.png")} alt="write"

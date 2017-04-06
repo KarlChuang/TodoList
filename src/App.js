@@ -6,16 +6,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      TitleArray: [
-        {content: "Title", inputShow: false, ItemArray: [
-          {complete: false, content: "content", inputShow: false},
-          {complete: false, content: "content", inputShow: false},
-        ]},
-        {content: "Title", inputShow: false, ItemArray: [
-          {complete: false, content: "content", inputShow: false},
-          {complete: false, content: "content", inputShow: false},
-        ]},
-      ]
+      TitleArray: []
     }
   }
   ArrayMapping = (inputArray) => {
@@ -35,7 +26,8 @@ class App extends Component {
                   onChangeItemKeyDown={this.handleChangeItemKeyDown}
                   onItemChangeClick={this.handleItemChangeClick}
                   onItemDelete={this.handleItemDelete}
-                  onAddButtonClick={this.handleAddButtonClick} />
+                  onAddButtonClick={this.handleAddButtonClick}
+                  onItemCompleteClick={this.handleItemCompleteClick} />
       ))
     }
     return newArray;
@@ -114,8 +106,15 @@ class App extends Component {
     this.setState((prevState) => {
       let newTitleArray = prevState.TitleArray;
       newTitleArray.push(
-        {content: "Title", inputShow: false, ItemArray: []}
+        {content: "", inputShow: true, ItemArray: []}
       );
+      return {TitleArray: newTitleArray};
+    })
+  }
+  handleItemCompleteClick = (num1, num) => {
+    this.setState((prevState) => {
+      let newTitleArray = prevState.TitleArray;
+      newTitleArray[num1].ItemArray[num].complete = !(newTitleArray[num1].ItemArray[num].complete);
       return {TitleArray: newTitleArray};
     })
   }

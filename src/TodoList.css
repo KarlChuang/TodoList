@@ -100,6 +100,28 @@
   background-color: lightslategray;
   transition: background-color 0.6s;
 } 
+.buttonComplete {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.50);
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  transition: background-color 0.6s;
+}
+.buttonComplete:hover {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
+  background-color: lightslategray;
+  transition: background-color 0.6s;
+}
 .thing {
   background-color: transparent;
   display: inline-block;
@@ -107,6 +129,16 @@
   font-size: 20px;
   border-radius: 30px;
   transition: background-color 0.6s;
+}
+.thingComplete {
+  background-color: transparent;
+  color: rgba(128, 128, 128, 0.47);  
+  display: inline-block;
+  width: 220px;
+  font-size: 20px;
+  border-radius: 30px;
+  transition: background-color 0.6s;
+  text-decoration: line-through;
 }
 .ToolBar {
   font-size: 13px;
@@ -119,8 +151,8 @@
   max-height: 30px;
 }
 .AddButton {
-  width: 200px;
-  margin-left: 50px;
+  width: 20%;
+  margin-left: 35%;
   margin-top: 10px;
   border-radius: 20px;
   background-color: slategrey;
