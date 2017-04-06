@@ -62,10 +62,10 @@ class TodoList extends Component {
           >+</div>
         </div>
         <div className="Tool">
-          <div className="ToolBar">{(ItemNumber>1) ? ItemNumber + " Items" : ItemNumber + " Item"}</div>
-          <div className="ToolBar" onClick={() => handleAllButtonClick(num)}>All</div>
-          <div className="ToolBar" onClick={() => handleCompleteButtonClick(num)}>Complete</div>
-          <div className="ToolBar" onClick={() => handleUndoButtonClick(num)}>Undo</div>
+          <div className="ToolBarItem">{(ItemNumber>1) ? ItemNumber + " Items" : ItemNumber + " Item"}</div>
+          <div className={(this.props.showStatus==="All")?"ToolBarDown":"ToolBar"} onClick={() => {handleAllButtonClick(num)}}>All</div>
+          <div className={(this.props.showStatus==="Complete")?"ToolBarDown":"ToolBar"} onClick={() => {handleCompleteButtonClick(num)}}>Complete</div>
+          <div className={(this.props.showStatus==="Undo")?"ToolBarDown":"ToolBar"} onClick={() => {handleUndoButtonClick(num)}}>Undo</div>
         </div>
       </div>
     );
