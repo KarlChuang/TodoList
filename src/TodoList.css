@@ -155,7 +155,7 @@
 }
 .ToolBar {
   font-size: 13px;
-  width: 70px;
+  width: 93px;
   border-radius: 10px;
   background-color: rgba(255,255,255,0.50);
   color: white;
@@ -171,7 +171,7 @@
 }
 .ToolBarDown {
   font-size: 13px;
-  width: 70px;
+  width: 93px;
   border-radius: 10px;
   background-color: rgba(206, 25, 25, 0.5);
   color: white;

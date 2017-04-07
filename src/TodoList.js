@@ -42,6 +42,15 @@ class TodoList extends Component {
     // Items
     let newTodoItemList = this.ArrayMapping(this.props.ItemArray, this.props.showStatus);
     const ItemNumber = this.props.ItemArray.length;
+    let CompleteItemNumber = 0;
+    let UndoItemNumber = 0;
+    for (let i=0; i<ItemNumber; i++) {
+      if (this.props.ItemArray[i].complete === true) {
+        CompleteItemNumber++;
+      } else {
+        UndoItemNumber++;
+      }
+    }
     const handleAddButtonClick = this.props.onAddButtonClick;
     const handleAllButtonClick = this.props.onAllButtonClick;
     const handleCompleteButtonClick = this.props.onCompleteButtonClick;
@@ -62,10 +71,9 @@ class TodoList extends Component {
           >+</div>
         </div>
         <div className="Tool">
-          <div className="ToolBarItem">{(ItemNumber>1) ? ItemNumber + " Items" : ItemNumber + " Item"}</div>
-          <div className={(this.props.showStatus==="All")?"ToolBarDown":"ToolBar"} onClick={() => {handleAllButtonClick(num)}}>All</div>
-          <div className={(this.props.showStatus==="Complete")?"ToolBarDown":"ToolBar"} onClick={() => {handleCompleteButtonClick(num)}}>Complete</div>
-          <div className={(this.props.showStatus==="Undo")?"ToolBarDown":"ToolBar"} onClick={() => {handleUndoButtonClick(num)}}>Undo</div>
+          <div className={(this.props.showStatus==="All")?"ToolBarDown":"ToolBar"} onClick={() => {handleAllButtonClick(num)}}>All ( {ItemNumber} )</div>
+          <div className={(this.props.showStatus==="Complete")?"ToolBarDown":"ToolBar"} onClick={() => {handleCompleteButtonClick(num)}}>Complete ( {CompleteItemNumber} )</div>
+          <div className={(this.props.showStatus==="Undo")?"ToolBarDown":"ToolBar"} onClick={() => {handleUndoButtonClick(num)}}>Undo ( {UndoItemNumber} )</div>
         </div>
       </div>
     );

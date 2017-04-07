@@ -98,13 +98,17 @@ class App extends Component {
     })
   }
   handleAddButtonClick = (num) => {
-    this.setState((prevState) => {
-      let newTitleArray = prevState.TitleArray;
-      newTitleArray[num].ItemArray.push({
-        complete: false, content: "", inputShow: true
-      });
-      return {TitleArray: newTitleArray};
-    })
+    if (this.state.TitleArray[num].showStatus === "Complete") {
+      alert("You cannot add todo item in the COMPLETE tag");
+    } else {
+      this.setState((prevState) => {
+        let newTitleArray = prevState.TitleArray;
+        newTitleArray[num].ItemArray.push({
+          complete: false, content: "", inputShow: true
+        });
+        return {TitleArray: newTitleArray};
+      })
+    }
   }
   handleListAddButtonClick = () => {
     this.setState((prevState) => {
