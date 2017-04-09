@@ -99,7 +99,7 @@ class App extends Component {
   }
   handleAddButtonClick = (num) => {
     if (this.state.TitleArray[num].showStatus === "Complete") {
-      alert("You cannot add todo item in the COMPLETE tag");
+      alert("You cannot add todo item in the Done tag");
     } else {
       this.setState((prevState) => {
         let newTitleArray = prevState.TitleArray;
