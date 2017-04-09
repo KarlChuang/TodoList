@@ -71,6 +71,7 @@ class TodoList extends Component {
           onChangeKeyDown={event => handleChangeTitleKeyDown(num, event)}
           onDelete={() => handleTitleDelete(num)}
         />
+        <div className="line">----------------------------------</div>
         <div className="TodoItemList">
           {newTodoItemList}
           <div
@@ -78,10 +79,10 @@ class TodoList extends Component {
             onClick={() => handleAddButtonClick(num)}
           >+</div>
         </div>
-        <div className="Tool">
+        <div>
           <div className={(this.props.showStatus === 'All') ? 'ToolBarDown' : 'ToolBar'} onClick={() => { handleAllButtonClick(num); }}>All ( {ItemNumber} )</div>
-          <div className={(this.props.showStatus === 'Complete') ? 'ToolBarDown' : 'ToolBar'} onClick={() => { handleCompleteButtonClick(num); }}>Complete ( {CompleteItemNumber} )</div>
-          <div className={(this.props.showStatus === 'Undo') ? 'ToolBarDown' : 'ToolBar'} onClick={() => { handleUndoButtonClick(num); }}>Undo ( {UndoItemNumber} )</div>
+          <div className={(this.props.showStatus === 'Complete') ? 'ToolBarDown' : 'ToolBar'} onClick={() => { handleCompleteButtonClick(num); }}>Done ( {CompleteItemNumber} )</div>
+          <div className={(this.props.showStatus === 'Undo') ? 'ToolBarDown' : 'ToolBar'} onClick={() => { handleUndoButtonClick(num); }}>Undone ( {UndoItemNumber} )</div>
         </div>
       </div>
     );
@@ -106,14 +107,16 @@ class TodoListTitle extends Component {
             onKeyDown={event => handleChangeKeyDown(event)}
           />
         ) : (<div className="title">{titleName}</div>)}
-        <img
-          className="delete" src={require('./pic/delete.png')} alt="delete"
-          onClick={handleDelete}
-        />
-        <img
-          className="write" src={require('./pic/write.png')} alt="write"
-          onClick={handleChangeClick}
-        />
+        <div className="buttonDiv">
+          <img
+            className="delete" src={require('./pic/delete.png')} alt="delete"
+            onClick={handleDelete}
+          />
+          <img
+            className="write" src={require('./pic/write.png')} alt="write"
+            onClick={handleChangeClick}
+          />
+        </div>
         <br />
       </div>
     );
@@ -142,14 +145,16 @@ class TodoItem extends Component {
             onKeyDown={event => handleChangeKeyDown(num, event)}
           />
           ) : (<div className={(complete) ? 'thingComplete' : 'thing'}>{content}</div>) }
-        <img
-          className="delete" src={require('./pic/delete.png')} alt="delete"
-          onClick={() => handleDelete(num)}
-        />
-        <img
-          className="write" src={require('./pic/write.png')} alt="write"
-          onClick={() => handleChangeClick(num)}
-        />
+        <div className="buttonDiv">
+          <img
+            className="delete" src={require('./pic/delete.png')} alt="delete"
+            onClick={() => handleDelete(num)}
+          />
+          <img
+            className="write" src={require('./pic/write.png')} alt="write"
+            onClick={() => handleChangeClick(num)}
+          />
+        </div>
       </div>
     );
   }

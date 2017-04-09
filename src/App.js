@@ -6,7 +6,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      TitleArray: []
+      TitleArray: [],
     }
   }
   ArrayMapping = (inputArray) => {
@@ -187,21 +187,38 @@ class App extends Component {
   render() {
     let newTodoList = this.ArrayMapping(this.state.TitleArray);
     const ListNumber = this.state.TitleArray.length;
+    const Counting = (inputArray, compare) => {
+      let Count = 0;
+      for (let i = 0; i < inputArray.length; i += 1) {
+        for (let j = 0; j < inputArray[i].ItemArray.length; j += 1) {
+          if (inputArray[i].ItemArray[j].complete === compare)
+            Count += 1;
+        }
+      }
+      return Count;
+    }
+    const CompleteNumber = Counting(this.state.TitleArray, true);
+    const UndoNumber = Counting(this.state.TitleArray, false);
 
     return (
       <div className="App">
-        <h1>TODO-LIST ({(ListNumber>1) ? ListNumber + " Lists" : ListNumber+ " List"})</h1>
+        <div className="Top">
+          <h1 className="TopTitle">TODO-LIST</h1>
+          <h1 className="SecondTitle">({(ListNumber>1) ? ListNumber + " Lists" : ListNumber+ " List"})</h1>
           <div className="Tool">
-            <div className="ToolBar" onClick={this.handleEveryAllButtonClick}>All</div>
-            <div className="ToolBar" onClick={this.handleEveryCompleteButtonClick}>Complete</div>
-            <div className="ToolBar" onClick={this.handleEveryUndoButtonClick}>Undo</div>
-            <div className="ToolBar" onClick={this.clearAllComplete}>Clear</div>
-          </div>        
+            <div className="ToolBar" onClick={this.handleEveryAllButtonClick}>All ( {CompleteNumber + UndoNumber} )</div>
+            <div className="ToolBar" onClick={this.handleEveryCompleteButtonClick}>Done ( {CompleteNumber} )</div>
+            <div className="ToolBar" onClick={this.handleEveryUndoButtonClick}>Undone ( {UndoNumber} )</div>
+            <div className="ToolBar" onClick={this.clearAllComplete}>Clean</div>
+          </div> 
+        </div> 
         <div>
           {newTodoList}
-          <div className="AddButton"
-                onClick={this.handleListAddButtonClick}
-          >+</div>
+          <div className="down">
+            <div className="AddButton2"
+                  onClick={this.handleListAddButtonClick}
+            >+</div>
+          </div>
         </div>
       </div>
     );
